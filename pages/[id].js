@@ -15,15 +15,15 @@ export const getStaticPaths = async () => {
   const data = await res.json();
   // console.log(data);
 
-  const paths = data.map((post) => {
+  const paths = data.map(post => {
     return {
       params: {
-        id: post._id,
+        id: post._id.toString(),
       },
     };
   });
 
-  // console.log(paths);
+  console.log(paths);
 
   return {
     paths,
