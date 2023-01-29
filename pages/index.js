@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 
-
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await fetch("https://blog-server-ezko.onrender.com/posts");
   const data = await res.json();
 

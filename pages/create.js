@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
 
-const SERVER_URL = process.env.SERVER_URL;
-
 const Create = () => {
   const titleRef = useRef();
   const nameRef = useRef();
