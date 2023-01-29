@@ -2,7 +2,7 @@ const SERVER_URL = process.env.SERVER_URL;
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const res = await fetch(SERVER_URL + "/posts" + id);
+  const res = await fetch(SERVER_URL + "/posts/" + id);
 
   const data = await res.json();
 
