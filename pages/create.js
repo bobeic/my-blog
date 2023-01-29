@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
 
+const SERVER_URL = process.env.SERVER_URL;
+
 const Create = () => {
   const titleRef = useRef();
   const nameRef = useRef();
@@ -16,7 +18,7 @@ const Create = () => {
     const author = nameRef.current.value;
     const body = bodyRef.current.value;
 
-    const response = await fetch("http://localhost:5000/posts", {
+    const response = await fetch(SERVER_URL + "/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
