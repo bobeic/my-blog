@@ -11,24 +11,28 @@ export const getStaticProps = async (context) => {
 
 export const getStaticPaths = async () => {
   const res = await fetch("http://localhost:5000/posts/");
-  // console.log(res);
-  const data = await res.json();
-  // console.log(data);
-
-  const paths = data.map(post => {
+  if (res.ok) {
+    const data = await res.json();
+    console.log(data);
+  
+    const paths = data.map((post) => {
+      return {
+        params: {
+          id: post._id.toString(),
+        },
+      };
+    });
+  
+    console.log(paths);
+  
     return {
-      params: {
-        id: post._id.toString(),
-      },
+      paths,
+      fallback: false,
     };
-  });
+  } else {
+    console.log("error");
+  }
 
-  console.log(paths);
-
-  return {
-    paths,
-    fallback: false,
-  };
 };
 
 const BlogPost = ({ post }) => {
