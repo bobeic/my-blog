@@ -24,7 +24,7 @@ export default function Home({ posts }) {
         <div className="row mt-3 justify-content-between">
           <div className="col-lg-8">
             {posts.map((post) => (
-              <Link href={`/posts/${post._id}`} key={post._id} className="text-reset text-decoration-none">
+              <Link href={`/${post._id}`} key={post._id} className="text-reset text-decoration-none">
                 <h3>{post.title}</h3>
                 <p className="text-muted">{post.author}</p>
                 <p>{post.body}</p>
