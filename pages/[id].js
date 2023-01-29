@@ -1,5 +1,6 @@
 export const getStaticProps = async (context) => {
   const id = context.params.id;
+  console.log(id);
   const res = await fetch("http://localhost:5000/posts/" + id);
 
   const data = await res.json();
