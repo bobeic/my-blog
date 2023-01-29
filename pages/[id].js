@@ -1,6 +1,5 @@
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  console.log(id);
   const res = await fetch("http://localhost:5000/posts/" + id);
 
   const data = await res.json();
@@ -12,8 +11,9 @@ export const getStaticProps = async (context) => {
 
 export const getStaticPaths = async () => {
   const res = await fetch("http://localhost:5000/posts/");
-
+  // console.log(res);
   const data = await res.json();
+  // console.log(data);
 
   const paths = data.map((post) => {
     return {
@@ -22,6 +22,8 @@ export const getStaticPaths = async () => {
       },
     };
   });
+
+  // console.log(paths);
 
   return {
     paths,
