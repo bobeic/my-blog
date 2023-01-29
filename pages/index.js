@@ -1,13 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 
-const SERVER_URL = process.env.SERVER_URL;
 
 export const getStaticProps = async () => {
-  const res = await fetch(SERVER_URL + "/posts");
-  console.log(res);
+  const res = await fetch("https://blog-server-ezko.onrender.com/posts");
   const data = await res.json();
-  console.log(data);
 
   return {
     props: { posts: data },
@@ -15,8 +12,6 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ posts }) {
-
-  console.log(posts);
   return (
     <>
       <Head>

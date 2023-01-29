@@ -2,7 +2,7 @@ const SERVER_URL = process.env.SERVER_URL;
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const res = await fetch(SERVER_URL + "/posts/" + id);
+  const res = await fetch("https://blog-server-ezko.onrender.com/posts/" + id);
 
   const data = await res.json();
 
@@ -12,7 +12,7 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch(SERVER_URL + "/posts");
+  const res = await fetch("https://blog-server-ezko.onrender.com/posts");
   if (res.ok) {
     const data = await res.json();
 
