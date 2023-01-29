@@ -1,6 +1,8 @@
+const SERVER_URL = process.env.SERVER_URL;
+
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const res = await fetch("http://localhost:5000/posts/" + id);
+  const res = await fetch(SERVER_URL + "/posts" + id);
 
   const data = await res.json();
 
@@ -10,11 +12,10 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:5000/posts/");
+  const res = await fetch(SERVER_URL + "/posts");
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
-  
+
     const paths = data.map((post) => {
       return {
         params: {
@@ -22,9 +23,7 @@ export const getStaticPaths = async () => {
         },
       };
     });
-  
-    console.log(paths);
-  
+
     return {
       paths,
       fallback: false,
@@ -32,7 +31,6 @@ export const getStaticPaths = async () => {
   } else {
     console.log("error");
   }
-
 };
 
 const BlogPost = ({ post }) => {

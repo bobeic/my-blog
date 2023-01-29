@@ -1,8 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 
+const SERVER_URL = process.env.SERVER_URL;
+
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:5000/posts/");
+  const res = await fetch(SERVER_URL + "/posts");
   const data = await res.json();
 
   return {
@@ -24,7 +26,11 @@ export default function Home({ posts }) {
         <div className="row mt-3 justify-content-between">
           <div className="col-lg-8">
             {posts.map((post) => (
-              <Link href={`/${post._id}`} key={post._id} className="text-reset text-decoration-none">
+              <Link
+                href={`/${post._id}`}
+                key={post._id}
+                className="text-reset text-decoration-none"
+              >
                 <h3>{post.title}</h3>
                 <p className="text-muted">{post.author}</p>
                 <p>{post.body}</p>
