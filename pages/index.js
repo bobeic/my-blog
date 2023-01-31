@@ -2,7 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 
 export const getServerSideProps = async () => {
-  const res = await fetch("https://blog-server-ezko.onrender.com/posts");
+  const res = await fetch("https://blog-server-ezko.onrender.com/api/posts");
+  // const res = await fetch("http://localhost:5000/api/posts");
+
   const data = await res.json();
 
   return {

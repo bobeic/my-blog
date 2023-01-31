@@ -1,29 +1,26 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 const Create = () => {
-  const titleRef = useRef();
-  const nameRef = useRef();
-  const bodyRef = useRef();
+  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
+
+  const [body, setBody] = useState("");
 
   const router = useRouter();
 
-  console.log(titleRef.current);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const title = titleRef.current.value;
-    const author = nameRef.current.value;
-    const body = bodyRef.current.value;
 
-    const response = await fetch("https://blog-server-ezko.onrender.com/posts", {
+    // "https://blog-server-ezko.onrender.com/api/posts"
+    const response = await fetch("https://blog-server-ezko.onrender.com/api/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         title,
-        author,
+        author: name,
         body,
       }),
     });
@@ -51,7 +48,8 @@ const Create = () => {
                 className="form-control"
                 id="title"
                 placeholder="Title"
-                ref={titleRef}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
@@ -64,7 +62,8 @@ const Create = () => {
                 className="form-control"
                 id="name"
                 placeholder="Name"
-                ref={nameRef}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
@@ -73,7 +72,8 @@ const Create = () => {
                 id="post"
                 style={{ height: "140px" }}
                 className="form-control"
-                ref={bodyRef}
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
               ></textarea>
               <label htmlFor="post" className="form-label">
                 Your post...
